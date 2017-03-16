@@ -26,6 +26,29 @@ PrintersAPI.getDefaultPrinter= edge.func(function()
 
 */});
  
+ PrintersAPI.setDefaultPrinter= edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+  public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {        
+		PrintDocument pdoc = new PrintDocument();
+		pdoc.DefaultPageSettings.PrinterSettings.PrinterName = (string)input;
+		return true;
+        }
+    }
+
+*/});
 
 PrintersAPI.getPrinters=edge.func(function()
 {/*
