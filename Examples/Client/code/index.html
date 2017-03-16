@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!--<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/printersCtrl.js"></script>
+    <script src="scripts/printersService.js"></script>
+</head>
+<body ng-app="app">
+
+    <div class="container-fluid" ng-controller="printersCtrl as printersCtrl">
+        <h1>Printers Information</h1>
+        <h3>Default Printer is:- <span ng-bind="printersCtrl.defaultPrinter"></span></h3>
+        <button class="btn-primary" ng-click="showPrinters=!showPrinters" ng>Show All Printers</button>
+
+        <div ng-if="showPrinters" class="row" ng-repeat="printer in printersCtrl.printers">
+            <div class="col-sm-4" style="background-color:lavender;margin-top:5px;">
+                <span ng-bind="printer"></span>
+            </div>
+            <div class="col-sm-1" style="margin-top:5px;">
+               <button class="btn-primary" ng-click="printersCtrl.Sendfile(printer)">Add Page</button>
+            </div>
+        </div>
+        <div style="margin-top:25px"></div>
+        <div class="form-group">
+            <label for="usr">File Path to Print : - </label>
+            <input type="text" style="width:50%" class="form-control" id="txtFilePath" ng-model="printersCtrl.filePath">
+        </div>
+        <div class="alert">
+            <strong>Status:- <span ng-bind="printersCtrl.fileStatus"></span></strong>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

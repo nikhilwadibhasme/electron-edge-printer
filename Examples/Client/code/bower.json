@@ -1,0 +1,22 @@
+{
+  "name": "client-print",
+  "description": "client side required libraries",
+  "main": "app.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-sanitize": "^1.6.2",
+    "angular": "^1.6.2",
+    "angular-animate": "^1.6.2",
+    "jquery": "^3.1.1",
+    "ui-bootstrap": "^2.5.0",
+    "bootstrap": "^3.3.7"
+  }
+}
