@@ -139,7 +139,7 @@ PrintersAPI.printFile = edge.func(function () {/*
 					return exception;
 				}
 			
-			return "success"+(string)input.printerName+(string)input.fileName;
+			return "success";
     }
 */});
 
