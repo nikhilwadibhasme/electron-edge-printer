@@ -4,7 +4,7 @@
 ## Install
 
 ```
-$ npm install --electron-edge-printer
+$ npm install electron-edge-printer
 ```
 ## Example Setup
 
