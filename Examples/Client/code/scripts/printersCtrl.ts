@@ -53,10 +53,13 @@ module app {
 
           this.fetchDefaultPrinter();
 
+     
         }
 
         hoveringOver(value: string): void {
         };
+
+        
 
         fetchDefaultPrinter(): void {
             var _this = this;
