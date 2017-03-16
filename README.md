@@ -10,4 +10,4 @@ $ npm install --electron-edge-printer
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Nikhil Wadibhasme](https://www.npmjs.com/package/electron-edge-printer)
