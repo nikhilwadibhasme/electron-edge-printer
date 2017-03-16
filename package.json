@@ -1,6 +1,6 @@
 {
   "name": "electron-edge-printer",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Printer api implementation for windows using electron-edge",
   "main": "electron-edge-printer.js",
   "scripts": {
