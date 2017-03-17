@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "crypto": "0.0.3",
-    "electron": "1.4.13",
+    "electron": "1.4.4",
     "electron-edge": "^6.5.3",
     "electron-edge-printer": "latest",
     "filewatcher": "^3.0.1",
