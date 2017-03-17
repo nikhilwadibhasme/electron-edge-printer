@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "crypto": "0.0.3",
-    "electron": "1.4.13",
+    "electron": "1.4.4",
     "electron-edge": "^6.5.3",
     "filewatcher": "^3.0.1",
     "os": "^0.1.1",
