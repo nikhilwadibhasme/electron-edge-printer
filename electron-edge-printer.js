@@ -144,6 +144,64 @@ PrintersAPI.printFile = edge.func(function () {/*
 */});
 
 
+PrintersAPI.getSupportedPageSizesforPrinter=edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	using System.Collections;
+		
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+	#r "ReachFramework.dll"
+		
+	#r "System.Printing.dll"
+	using System.Printing;	
+	
+  public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {
+		    List<PageMediaSize> availablePaperSizes = new List<PageMediaSize>();
+
+            Startup s = new Startup();
+            foreach (PrintQueue printQueue in s.GetPrintQueues())
+            {
+				if(printQueue.FullName.Equals(input))
+				{
+					var pCapability = printQueue.GetPrintCapabilities();
+					foreach (PageMediaSize paperSize in pCapability.PageMediaSizeCapability)
+					{
+						availablePaperSizes.Add(paperSize);
+					}
+					break;
+				}
+            }
+
+            return availablePaperSizes;	
+        }
+		
+		 private IEnumerable GetPrintQueues()
+        {
+            PrintServer printServer = new PrintServer();
+
+            PrintQueueCollection printQueues
+              = printServer.GetPrintQueues(new[]
+            {
+				EnumeratedPrintQueueTypes.Local,
+				EnumeratedPrintQueueTypes.Connections
+            });
+
+            return printQueues;
+        }
+	}
+
+*/});
+
 module.exports= PrintersAPI;
 
 
