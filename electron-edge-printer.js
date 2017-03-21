@@ -202,6 +202,64 @@ PrintersAPI.getSupportedPageSizesforPrinter=edge.func(function()
 
 */});
 
+PrintersAPI.getSupportedPageOrientationsforPrinter=edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	using System.Collections;
+		
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+	#r "ReachFramework.dll"
+		
+	#r "System.Printing.dll"
+	using System.Printing;	
+	
+  public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {
+		     List<PageOrientation> availablePageOrientations = new List<PageOrientation>();
+
+            Startup s = new Startup();
+            foreach (PrintQueue printQueue in s.GetPrintQueues())
+            {
+                if (printQueue.FullName.Equals(input))
+                {
+                    var pCapability = printQueue.GetPrintCapabilities();
+                    foreach (PageOrientation pageOrientation in pCapability.PageOrientationCapability)
+                    {
+                        availablePageOrientations.Add(pageOrientation);
+                    }
+                    break;
+                }
+            }
+
+            return availablePageOrientations;	
+        }
+		
+		 private IEnumerable GetPrintQueues()
+        {
+            PrintServer printServer = new PrintServer();
+
+            PrintQueueCollection printQueues
+              = printServer.GetPrintQueues(new[]
+            {
+				EnumeratedPrintQueueTypes.Local,
+				EnumeratedPrintQueueTypes.Connections
+            });
+
+            return printQueues;
+        }
+	}
+
+*/});
+
 module.exports= PrintersAPI;
 
 
