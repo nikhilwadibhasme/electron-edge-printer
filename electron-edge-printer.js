@@ -260,6 +260,170 @@ PrintersAPI.getSupportedPageOrientationsforPrinter=edge.func(function()
 
 */});
 
+PrintersAPI.setPageSizeforPrinter=edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	using System.Collections;
+		
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+	#r "ReachFramework.dll"
+		
+	#r "System.Printing.dll"
+	using System.Printing;	
+	
+  public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {
+					Startup s = new Startup();
+         
+                    foreach (PrintQueue printQueue in s.GetPrintQueues())
+					{
+						if (printQueue.FullName.Equals((string)input.printerName))
+						{
+							return s.setPageSizeforPrinter(printQueue, (string)input.pageSizeName);
+						}
+					}
+        
+				return "error";
+        }
+		
+		 private IEnumerable GetPrintQueues()
+        {
+            PrintServer printServer = new PrintServer();
+
+            PrintQueueCollection printQueues
+              = printServer.GetPrintQueues(new[]
+            {
+				EnumeratedPrintQueueTypes.Local,
+				EnumeratedPrintQueueTypes.Connections
+            });
+
+            return printQueues;
+        }
+		
+		  private string setPageSizeforPrinter(PrintQueue queue, string pageMediaSizeName)
+        {
+            PrintCapabilities printcap = queue.GetPrintCapabilities();
+
+            PageMediaSize pageMediaSizeToSet = null;
+            foreach (PageMediaSize pageMediaSize in printcap.PageMediaSizeCapability)
+            {
+                if (string.Equals(pageMediaSize.PageMediaSizeName.ToString(), pageMediaSizeName))
+                {
+                    pageMediaSizeToSet = pageMediaSize;
+                }
+            }
+
+            PrintTicket deltaTicket = new PrintTicket();
+            deltaTicket.PageMediaSize = pageMediaSizeToSet;
+
+            ValidationResult result = queue.MergeAndValidatePrintTicket(queue.UserPrintTicket, deltaTicket);
+
+            if (string.Equals(result.ValidatedPrintTicket.PageMediaSize.PageMediaSizeName.ToString(), pageMediaSizeName))
+            {
+                queue.UserPrintTicket = result.ValidatedPrintTicket;
+                queue.Commit();
+                return "Success";
+            }
+            else
+            {
+                return "error";
+            }
+
+        }
+	}
+
+*/});
+
+PrintersAPI.setPageOrientationforPrinter=edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	using System.Collections;
+		
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+	#r "ReachFramework.dll"
+		
+	#r "System.Printing.dll"
+	using System.Printing;	
+	
+  public class Startup
+    {
+		 public async Task<object> Invoke(dynamic input)
+        {
+					Startup s = new Startup();
+         
+                    foreach (PrintQueue printQueue in s.GetPrintQueues())
+					{
+						if (printQueue.FullName.Equals((string)input.printerName))
+						{
+							return s.setPageOrientationforPrinter(printQueue, (string)input.pageOrientation);
+						}
+					}
+        
+				return "error";
+        }
+        
+		
+		 private IEnumerable GetPrintQueues()
+        {
+            PrintServer printServer = new PrintServer();
+
+            PrintQueueCollection printQueues
+              = printServer.GetPrintQueues(new[]
+            {
+				EnumeratedPrintQueueTypes.Local,
+				EnumeratedPrintQueueTypes.Connections
+            });
+
+            return printQueues;
+        }
+		
+		  private string setPageOrientationforPrinter(PrintQueue queue, string pageOrientation)
+        {
+           PrintCapabilities printcap = queue.GetPrintCapabilities();
+		   PrintTicket deltaTicket = new PrintTicket();
+           PageOrientation pOrientation;
+		   System.Enum.TryParse(pageOrientation, out pOrientation);
+		  
+           if (printcap.PageOrientationCapability.Contains(pOrientation))
+           {
+               deltaTicket.PageOrientation = pOrientation;
+           }
+     
+           ValidationResult result = queue.MergeAndValidatePrintTicket(queue.UserPrintTicket, deltaTicket);
+        
+           if (result.ValidatedPrintTicket.PageOrientation== pOrientation)
+           {
+               queue.UserPrintTicket = result.ValidatedPrintTicket;
+               queue.Commit();
+               return "Success";
+           }
+           else
+           {
+               return "error";
+           }
+
+        }
+	}
+
+*/});
+
+
 module.exports= PrintersAPI;
 
 
