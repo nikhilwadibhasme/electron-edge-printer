@@ -1,12 +1,27 @@
 
-> Module for implementing printer functionality for windows using electron-edge
+> Node Module for implementing printer functionality using electron-edge
+
+### Features:
+
+* compatible with electron : "1.4.13";
+* compatible with electron-edge : "^6.5.3",
+* compatible with node v6.10.0
+* `getPrinters()` to enumerate all installed printers;
+* `getDefaultPrinter` to get Default Printer assigned to machine;
+* `printFile(FileName,printerName)` Print the specified file to the provided Printer
+* `getSupportedPageSizesforPrinter(printerName)` to get Supported Page Sizes for provided Printer
+* `getSupportedPageOrientationsforPrinter(printerName)` to get Supported Orientations for provided Printer
+* `getAvailableTraysforPrinter(printerName)` to get Available Trays for provided Printer
+* `setPageSizeforPrinter(printerName,pageSizeName)` to Set given Page Size for provided Printer
+* `setPageOrientationforPrinter(printerName,pageOrientation)` to Set given page Orientation for provided Printer
+
 
 ## Install
 
 ```
 $ npm install electron-edge-printer
 ```
-## Example Setup
+## Setup
 
 ```
 Inside Client.js
@@ -22,6 +37,11 @@ $ bower install
 $ npm start 
 
 ```
+### How to use:
+
+Sample Web Page Using Angular 1.5 and electron-edge-printer
+
+See [example](https://github.com/nikhilwadibhasme/electron-edge-printer/tree/master/Examples/Client)
 
 ## License
 

@@ -260,6 +260,93 @@ PrintersAPI.getSupportedPageOrientationsforPrinter=edge.func(function()
 
 */});
 
+PrintersAPI.getAvailableTraysforPrinter=edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	using System.Collections;
+	using System.IO;
+	
+	#r "System.Xml.dll"
+	using System.Xml;
+		
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+	#r "ReachFramework.dll"
+		
+	#r "System.Printing.dll"
+	using System.Printing;	
+	
+  public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {
+			  Startup s = new Startup();
+		      return s.GetInputBins(input);
+        }
+		
+		 public Dictionary<string, string> GetInputBins(string printerName)
+        {
+            Dictionary<string, string> inputBins = new Dictionary<string, string>();
+
+            Startup s = new Startup();
+            foreach (PrintQueue printQueue in s.GetPrintQueues())
+            {
+                if (printQueue.FullName.Equals((printerName)))
+                {
+                    // get PrintCapabilities of the printer
+                    MemoryStream printerCapXmlStream = printQueue.GetPrintCapabilitiesAsXml();
+
+                    // read the JobInputBins out of the PrintCapabilities
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.Load(printerCapXmlStream);
+
+                    // create NamespaceManager and add PrintSchemaFrameWork-Namespace (should be on DocumentElement of the PrintTicket)
+                    // Prefix: psf  NameSpace: xmlDoc.DocumentElement.NamespaceURI = "http://schemas.microsoft.com/windows/2003/08/printing/printschemaframework"
+                    XmlNamespaceManager manager = new XmlNamespaceManager(xmlDoc.NameTable);
+                    manager.AddNamespace(xmlDoc.DocumentElement.Prefix, xmlDoc.DocumentElement.NamespaceURI);
+
+                    // and select all nodes of the bins
+                    //XmlNodeList nodeList = xmlDoc.SelectNodes("//psf:Feature[@name='psk:JobInputBin']/psfSurpriseption", manager);
+                    XmlNodeList nodeList = xmlDoc.SelectNodes("//psf:Feature[@name='psk:JobInputBin']/psf:Option/psf:Property", manager);
+                    //psf:Feature[@name='psk:PageMediaSize']/psf:Option/psf:Property
+
+                    // fill Dictionary with the bin-names and values
+                    foreach (XmlNode node in nodeList)
+                    {
+                        inputBins.Add(node.LastChild.InnerText, node.Attributes["name"].Value);
+                    }
+
+                    return inputBins;
+
+                }
+            }
+
+            return null;
+        }
+		
+		 private IEnumerable GetPrintQueues()
+        {
+            PrintServer printServer = new PrintServer();
+
+            PrintQueueCollection printQueues
+              = printServer.GetPrintQueues(new[]
+            {
+				EnumeratedPrintQueueTypes.Local,
+				EnumeratedPrintQueueTypes.Connections
+            });
+
+            return printQueues;
+        }
+	}
+
+*/});
+
 PrintersAPI.setPageSizeforPrinter=edge.func(function()
 {/*
 	using System.Diagnostics;
