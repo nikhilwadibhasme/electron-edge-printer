@@ -10,9 +10,11 @@
 * `getDefaultPrinter` to get Default Printer assigned to machine;
 * `printFile(FileName,printerName)` Print the specified file to the provided Printer
 * `getSupportedPageSizesforPrinter(printerName)` to get Supported Page Sizes for provided Printer
+* `getSupportedOutPutColorsforPrinter(printerName)` to get Supported Output colors for provided Printer
 * `getSupportedPageOrientationsforPrinter(printerName)` to get Supported Orientations for provided Printer
 * `getAvailableTraysforPrinter(printerName)` to get Available Trays for provided Printer
 * `setPageSizeforPrinter(printerName,pageSizeName)` to Set given Page Size for provided Printer
+* `setOutPutColorforPrinter(printerName,OutPutColor)` to Set OutPut Color for provided Printer
 * `setPageOrientationforPrinter(printerName,pageOrientation)` to Set given page Orientation for provided Printer
 * `setTrayforPrinter(printerName,TrayName)` to Set given Tray for provided Printer **(Note:- This method need to be tested)**
 

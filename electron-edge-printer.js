@@ -26,7 +26,6 @@ PrintersAPI.getDefaultPrinter= edge.func(function()
 
 */});
  
-
 PrintersAPI.getPrinters=edge.func(function()
 {/*
 	using System.Diagnostics;
@@ -55,7 +54,6 @@ PrintersAPI.getPrinters=edge.func(function()
 	}
 
 */});
-
 
 PrintersAPI.printFile = edge.func(function () {/*
 	using System;
@@ -143,7 +141,6 @@ PrintersAPI.printFile = edge.func(function () {/*
     }
 */});
 
-
 PrintersAPI.getSupportedPageSizesforPrinter=edge.func(function()
 {/*
 	using System.Diagnostics;
@@ -183,6 +180,64 @@ PrintersAPI.getSupportedPageSizesforPrinter=edge.func(function()
             }
 
             return availablePaperSizes;	
+        }
+		
+		 private IEnumerable GetPrintQueues()
+        {
+            PrintServer printServer = new PrintServer();
+
+            PrintQueueCollection printQueues
+              = printServer.GetPrintQueues(new[]
+            {
+				EnumeratedPrintQueueTypes.Local,
+				EnumeratedPrintQueueTypes.Connections
+            });
+
+            return printQueues;
+        }
+	}
+
+*/});
+
+PrintersAPI.getSupportedOutPutColorsforPrinter=edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	using System.Collections;
+		
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+	#r "ReachFramework.dll"
+		
+	#r "System.Printing.dll"
+	using System.Printing;	
+	
+  public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {
+		    List<OutputColor> availableOutputColors = new List<OutputColor>();
+
+            Startup s = new Startup();
+            foreach (PrintQueue printQueue in s.GetPrintQueues())
+            {
+				if(printQueue.FullName.Equals(input))
+				{
+					var pCapability = printQueue.GetPrintCapabilities();
+					foreach (OutputColor outputColor in pCapability.OutputColorCapability)
+					{
+						availableOutputColors.Add(outputColor);
+					}
+					break;
+				}
+            }
+
+            return availableOutputColors;	
         }
 		
 		 private IEnumerable GetPrintQueues()
@@ -430,6 +485,89 @@ PrintersAPI.setPageSizeforPrinter=edge.func(function()
 
 */});
 
+PrintersAPI.setOutPutColorforPrinter=edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	using System.Collections;
+		
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+	#r "ReachFramework.dll"
+		
+	#r "System.Printing.dll"
+	using System.Printing;	
+	
+  public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {
+					Startup s = new Startup();
+         
+                    foreach (PrintQueue printQueue in s.GetPrintQueues())
+					{
+						if (printQueue.FullName.Equals((string)input.printerName))
+						{
+							return s.setOutPutColorforPrinter(printQueue, (string)input.OutPutColor);
+						}
+					}
+        
+				return "error";
+        }
+		
+		 private IEnumerable GetPrintQueues()
+        {
+            PrintServer printServer = new PrintServer();
+
+            PrintQueueCollection printQueues
+              = printServer.GetPrintQueues(new[]
+            {
+				EnumeratedPrintQueueTypes.Local,
+				EnumeratedPrintQueueTypes.Connections
+            });
+
+            return printQueues;
+        }
+		
+		  private string setOutPutColorforPrinter(PrintQueue queue, string OptColor)
+        {
+            PrintCapabilities printcap = queue.GetPrintCapabilities();
+
+            OutputColor OutputColorToSet = OutputColor.Unknown;
+            foreach (OutputColor oColor in printcap.OutputColorCapability)
+            {
+                if (string.Equals(oColor.ToString(), OptColor))
+                {
+                    OutputColorToSet = oColor;
+                }
+            }
+
+            PrintTicket deltaTicket = new PrintTicket();
+            deltaTicket.OutputColor = OutputColorToSet;
+
+            ValidationResult result = queue.MergeAndValidatePrintTicket(queue.UserPrintTicket, deltaTicket);
+
+            if (string.Equals(result.ValidatedPrintTicket.OutputColor.ToString(), OptColor))
+            {
+                queue.UserPrintTicket = result.ValidatedPrintTicket;
+                queue.Commit();
+                return "Success";
+            }
+            else
+            {
+                return "error";
+            }
+
+        }
+	}
+
+*/});
+
 PrintersAPI.setPageOrientationforPrinter=edge.func(function()
 {/*
 	using System.Diagnostics;
@@ -509,7 +647,6 @@ PrintersAPI.setPageOrientationforPrinter=edge.func(function()
 	}
 
 */});
-
 
 PrintersAPI.setTrayforPrinter=edge.func(function()
 {/*
