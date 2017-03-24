@@ -14,6 +14,7 @@
 * `getAvailableTraysforPrinter(printerName)` to get Available Trays for provided Printer
 * `setPageSizeforPrinter(printerName,pageSizeName)` to Set given Page Size for provided Printer
 * `setPageOrientationforPrinter(printerName,pageOrientation)` to Set given page Orientation for provided Printer
+* `setTrayforPrinter(printerName,TrayName)` to Set given Tray for provided Printer '(Note:- This method need to be tested'
 
 
 ## Install

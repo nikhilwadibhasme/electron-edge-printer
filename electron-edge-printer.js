@@ -511,6 +511,103 @@ PrintersAPI.setPageOrientationforPrinter=edge.func(function()
 */});
 
 
+PrintersAPI.setTrayforPrinter=edge.func(function()
+{/*
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+ 	using System.Collections.Generic;
+	using System.Collections;
+	using System.IO;
+	
+	#r "System.Xml.dll"
+	using System.Xml;
+	
+	#r "System.Drawing.dll"
+	using System.Drawing.Printing;	
+	
+	#r "System.Drawing.dll"
+	using System.Drawing;	
+	
+	#r "ReachFramework.dll"
+		
+	#r "System.Printing.dll"
+	using System.Printing;	
+	
+  public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {
+					Startup s = new Startup();
+         
+                    foreach (PrintQueue printQueue in s.GetPrintQueues())
+					{
+						if (printQueue.FullName.Equals((string)input.printerName))
+						{
+							 printQueue.Refresh();
+							 PrintTicket pTicket = s.setTrayforPrinter(printQueue.UserPrintTicket, "psk:JobInputBin", (string)input.TrayName);
+							 ValidationResult result = printQueue.MergeAndValidatePrintTicket(printQueue.UserPrintTicket, pTicket);
+							 printQueue.Commit();
+							 return "Success";
+						}
+					}
+        
+				return "error";
+        }
+		
+		 private IEnumerable GetPrintQueues()
+        {
+            PrintServer printServer = new PrintServer();
+
+            PrintQueueCollection printQueues
+              = printServer.GetPrintQueues(new[]
+            {
+				EnumeratedPrintQueueTypes.Local,
+				EnumeratedPrintQueueTypes.Connections
+            });
+
+            return printQueues;
+        }
+		
+       public PrintTicket setTrayforPrinter(PrintTicket ticket, string featureName, string newValue)
+        {
+            
+            // Read Xml of the PrintTicket xml.
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(ticket.GetXmlStream());
+         
+            // Create NamespaceManager and add PrintSchemaFrameWork-Namespace hinzufugen (should be on DocumentElement of the PrintTicket).
+            // Prefix: psf NameSpace: xmlDoc.DocumentElement.NamespaceURI = "http://schemas.microsoft.com/windows/2003/08/printing/printschemaframework"
+            XmlNamespaceManager manager = new XmlNamespaceManager(xmlDoc.NameTable);
+            manager.AddNamespace(xmlDoc.DocumentElement.Prefix, xmlDoc.DocumentElement.NamespaceURI);
+         
+            // Search node with desired feature we're looking for and set newValue for it
+            string xpath = string.Format("//psf:Feature[@name='{0}']/psf:Option", featureName);
+            //psf:Feature[@name='psk:JobInputBin']/psf:Option/psf:Property
+            XmlNode node = xmlDoc.SelectSingleNode(xpath, manager);
+            if (node != null)
+            {
+                if (node.Attributes["name"].Value != newValue)
+                {
+                    node.Attributes["name"].Value = newValue;
+                }
+            }
+         
+            // Create a new PrintTicket out of the XML.
+            PrintTicket modifiedPrintTicket = null;
+            using (MemoryStream stream = new MemoryStream())
+            {
+                xmlDoc.Save(stream);
+                stream.Position = 0;
+                modifiedPrintTicket = new PrintTicket(stream);
+            }
+         
+           
+            return modifiedPrintTicket;
+        }
+	}
+
+*/});
+
 module.exports= PrintersAPI;
 
 

@@ -10,39 +10,6 @@ var app;
             var _this = this;
             this.fetchPrinters();
             this.fetchDefaultPrinter();
-            var edgeprinter = require('electron-edge-printer');
-            edgeprinter.getSupportedPageSizesforPrinter('\\\\CSPUDCA01\\EPSON L550 Series', function (error, result) {
-                if (error)
-                    throw error;
-                var lstpageSizes = result;
-                console.log('available page sizes:-');
-                console.log(lstpageSizes);
-            });
-            edgeprinter.getSupportedPageOrientationsforPrinter('Canon iR3235/iR3245 PCL6', function (error, result) {
-                if (error)
-                    throw error;
-                var lstpageOrientation = result;
-                console.log('available page Orientation:-');
-                console.log(lstpageOrientation);
-            });
-            var PageSizeInfo = {
-                printerName: 'Canon iR3235/iR3245 PCL6',
-                pageSizeName: 'ISOA3'
-            };
-            edgeprinter.setPageSizeforPrinter(PageSizeInfo, function (error, result) {
-                if (error)
-                    throw error;
-                console.log(result);
-            });
-            var PageOrientationInfo = {
-                printerName: 'Canon iR3235/iR3245 PCL6',
-                pageOrientation: 'Landscape'
-            };
-            edgeprinter.setPageOrientationforPrinter(PageOrientationInfo, function (error, result) {
-                if (error)
-                    throw error;
-                console.log(result);
-            });
         }
         printersCtrl.prototype.hoveringOver = function (value) {
         };
