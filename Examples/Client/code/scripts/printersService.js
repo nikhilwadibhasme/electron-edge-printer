@@ -29,8 +29,6 @@ var app;
                 });
                 return deferred.promise;
             };
-            // serverPath: string = "http://10.35.34.11/TSurvey/api/";
-            //var url = "http://10.35.34.11/TSurvey/api/";
             printersService.$inject = ['$http', '$q'];
             return printersService;
         }());
